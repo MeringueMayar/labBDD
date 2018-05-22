@@ -23,7 +23,7 @@ public class LineIsImmutableTest {
 
     @Test
     public void stationsCanNotBeModifiedAfterLineCreation() throws Exception {
-        inputStations[0] = "station 99";
+        inputStations[0] = "station 1";
 
         assertThat(sampleLine.getStations(), is(Arrays.asList(inputStationsCopy)));
     }
