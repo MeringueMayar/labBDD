@@ -11,11 +11,11 @@ import org.joda.time.LocalTime;
 import java.util.List;
 
 public class ArriveTimeToDestinationStation {
-    @Zakładając("^chcę się dostać z \"(.*)\" do \"(.*)\"$")
+    @Zakładając("^chcę się dostać z ([^\"]*) do ([^\"]*)$")
     public void givenTravel(String departure, String destination) {
         throw new PendingException();
     }
-    @I("^następny pociąg odjeżdża o \"([^\"]*)\" na linii \"([^\"]*)\"$")
+    @I("^następny pociąg odjeżdża o ([^\"]*) na linii ([^\"]*)$")
     public void andNextTrain(String departureTime, String lineName) {
         throw new PendingException();
     }
@@ -24,7 +24,7 @@ public class ArriveTimeToDestinationStation {
         throw new PendingException();
     }
 
-    @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu: \"([^\"]*)\"$")
+    @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu: ([^\"]*)$")
     public void shouldBeInformedAboutArriveTime(@Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
         throw new PendingException();
     }
