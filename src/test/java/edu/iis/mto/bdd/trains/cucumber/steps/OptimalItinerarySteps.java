@@ -9,13 +9,14 @@ import cucumber.api.Transform;
 import cucumber.api.java.pl.Gdy;
 import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
+import edu.iis.mto.bdd.trains.model.Line;
 
 public class OptimalItinerarySteps {
-
+    
     @Zakładając("^pociągi linii \"(.*)\" z \"(.*)\" odjeżdżają ze stacji \"(.*)\" do \"(.*)\" o$")
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
-        throw new PendingException();
+        
 
     }
 
