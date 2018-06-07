@@ -1,7 +1,5 @@
 package edu.iis.mto.bdd.trains.cucumber.steps;
 
-import java.util.List;
-
 import org.joda.time.LocalTime;
 
 import cucumber.api.PendingException;
@@ -28,8 +26,8 @@ public class ArrivalTimeSteps {
         throw new PendingException();
     }
 
-    @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu:$")
-    public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
+    @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu: (.*)$")
+    public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) LocalTime expectedTrainTime) {
         throw new PendingException();
     }
 }
