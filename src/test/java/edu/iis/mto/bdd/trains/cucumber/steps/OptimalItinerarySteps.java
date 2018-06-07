@@ -40,8 +40,7 @@ public class OptimalItinerarySteps {
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
     public void whenIWantToTravel(String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
-        int numberOfNextDepartures = 3;
-        arrivalTimes = itineraryService.findNextDepartures(line, departure, startTime, numberOfNextDepartures);
+        arrivalTimes = itineraryService.findNextDepartures(departure, destination, startTime);
     }
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")
