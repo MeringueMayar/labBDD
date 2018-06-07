@@ -33,6 +33,7 @@ public class WhenCalculatingArrivalTimes {
         String departureLocation = "Parramatta";
         String destination = "Town Hall";
         LocalTime departureTime = new LocalTime("8:00");
+        int minutesOfNextDepartures = 15;
         List<LocalTime> expectedDepartureTimes = new ArrayList<LocalTime>(
                 Arrays.asList(new LocalTime("8:02"), new LocalTime("8:11"), new LocalTime("8:14")));
         line = Line.named("Western").departingFrom("Emu Plains").withStations("Emu Plains", "Parramatta", "Town Hall",
@@ -48,7 +49,8 @@ public class WhenCalculatingArrivalTimes {
         Mockito.when(timetable.findArrivalTimes(line, departureLocation)).thenReturn(allDeparturesTimes);
 
         List<LocalTime> foundDepartureTimes = new ArrayList<>();
-        foundDepartureTimes = itinerary.findNextDepartures(departureLocation, destination, departureTime);
+        foundDepartureTimes = itinerary.findNextDepartures(departureLocation, destination, departureTime,
+                minutesOfNextDepartures);
 
         Assert.assertThat(foundDepartureTimes, Matchers.hasSize(numberOfDepartures));
         Assert.assertThat(foundDepartureTimes, Matchers.equalTo(expectedDepartureTimes));
