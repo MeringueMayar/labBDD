@@ -31,22 +31,21 @@ public class WhenCalculatingArrivalTimes {
     public void trainsOnLineWesternFromEmuPlainsDeparturingFromParamattaToTownHallAtGivenTimeShouldArriveAtExpectedTime() {
         int numberOfDepartures = 3;
         String departureLocation = "Parramatta";
-        LocalTime allDepartureTimes = new LocalTime("8:00");
+        LocalTime departureTime = new LocalTime("8:00");
         List<LocalTime> expectedDepartureTimes = new ArrayList<LocalTime>(
                 Arrays.asList(new LocalTime("8:02"), new LocalTime("8:11"), new LocalTime("8:14")));
         line = Line.named("Western").departingFrom("Emu Plains").withStations("Emu Plains", "Parramatta", "Town Hall",
                 "North Richmond");
-        List<LocalTime> departureTimes = Arrays.asList(new LocalTime(7, 53), new LocalTime(7, 55), new LocalTime(7, 57),
+        List<LocalTime> allDeparturesTimes = Arrays.asList(new LocalTime(7, 53), new LocalTime(7, 55), new LocalTime(7, 57),
                 new LocalTime(8, 6), new LocalTime(8, 9), new LocalTime(8, 16));
 
-        for (int i = 0; i < departureTimes.size(); i++) {
-            departureTimes.set(i, departureTimes.get(i).plusMinutes(5));
+        for (int i = 0; i < allDeparturesTimes.size(); i++) {
+            allDeparturesTimes.set(i, allDeparturesTimes.get(i).plusMinutes(5));
         }
-        Mockito.when(timetable.findArrivalTimes(line, departureLocation)).thenReturn(departureTimes);
+        Mockito.when(timetable.findArrivalTimes(line, departureLocation)).thenReturn(allDeparturesTimes);
 
         List<LocalTime> foundDepartureTimes = new ArrayList<>();
-        foundDepartureTimes = itinerary.findNextDepartures(line, departureLocation, new LocalTime("8:00"),
-                numberOfDepartures);
+        foundDepartureTimes = itinerary.findNextDepartures(line, departureLocation, departureTime, numberOfDepartures);
 
         Assert.assertThat(foundDepartureTimes, Matchers.hasSize(numberOfDepartures));
         Assert.assertThat(foundDepartureTimes, Matchers.equalTo(expectedDepartureTimes));
