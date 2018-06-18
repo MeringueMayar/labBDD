@@ -15,7 +15,7 @@ public class ArrivalTimeSteps {
     public void givenFromWhere(String departurePlace, String arrivalPlace) {
 		throw new PendingException();
     }
-	@I("^następny pociąg odjeżdza o$ na linii \"(.*)\"$")
+	@I("^następny pociąg odjeżdza o (.*) na linii \"(.*)\"$")
 	public void andNextTrainArrives(@Transform(JodaLocalTimeConverter.class) LocalTime startTime, String line)
 	{
 		throw new PendingException();
@@ -26,7 +26,7 @@ public class ArrivalTimeSteps {
     }
 
     @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu:(.*)$")
-    public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
+    public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) LocalTime optimalTime) {
         throw new PendingException();
     }
 }
