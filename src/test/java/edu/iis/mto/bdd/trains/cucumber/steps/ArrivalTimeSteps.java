@@ -11,16 +11,16 @@ import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
 public class ArrivalTimeSteps {
 
-	@Zakładając("^chcę się dostać z \"(.*)\" do \"(.*)\"")
+	@Zakładając("^chcę się dostać z \"(.*)\" do \"(.*)\"$")
     public void givenFromWhere(String departurePlace, String arrivalPlace) {
 		throw new PendingException();
     }
-	@I("^następny pociąg odjeżdza o$ na linii \"(.*)\"")
+	@I("^następny pociąg odjeżdza o$ na linii \"(.*)\"$")
 	public void andNextTrainArrives(@Transform(JodaLocalTimeConverter.class) LocalTime startTime, String line)
 	{
 		throw new PendingException();
 	}
-    @Gdy("^zapytam o godzinę przyjazdu")
+    @Gdy("^zapytam o godzinę przyjazdu$")
     public void whenIAskAboutArrivalTime() {
         throw new PendingException();
     }
