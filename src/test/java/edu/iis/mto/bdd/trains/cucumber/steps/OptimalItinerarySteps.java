@@ -7,7 +7,6 @@ import org.hamcrest.Matchers;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.pl.Gdy;
 import cucumber.api.java.pl.Wtedy;
@@ -26,7 +25,7 @@ public class OptimalItinerarySteps {
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
     public void whenIWantToTravel(String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
-        throw new PendingException();
+       // throw new PendingException();
     }
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")
