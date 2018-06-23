@@ -6,11 +6,8 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.hamcrest.Matchers;
 import org.joda.time.LocalTime;
-import org.junit.Assert;
 
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.Before;
 import cucumber.api.java.pl.Gdy;
