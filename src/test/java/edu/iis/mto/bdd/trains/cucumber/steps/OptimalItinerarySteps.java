@@ -29,4 +29,5 @@ public class OptimalItinerarySteps {
     public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
         throw new PendingException();
     }
+    
 }
