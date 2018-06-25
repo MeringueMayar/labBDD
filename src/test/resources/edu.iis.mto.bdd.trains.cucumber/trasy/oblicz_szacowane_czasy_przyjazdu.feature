@@ -10,7 +10,7 @@ Szablon scenariusza: Szacowanie czasu przyjazdu.
 	Gdy zapytam o godzinę przyjazdu
 	Wtedy powinienem uzyskać następujący szacowany czas przyjazdu: <przyjazd>
 	Przykłady:
-		| miastoA		|	miastoB		|	odjazd	|	linia		|	przyjazd	|
+		| miastoA		|	miastoB		|	odjazd		|	linia		|	przyjazd	|
 		| "Paramatta"	|	"Town Hall"	|	8:02		|	"Western"	|	8:29		|
 		| "Epping"		|	"Central"	|	8:03		|	"Northern"	|	8:48		|
 		| "Epping"		|	"Central"	|	8:07		|	"Newcastle"	|	8:37		|

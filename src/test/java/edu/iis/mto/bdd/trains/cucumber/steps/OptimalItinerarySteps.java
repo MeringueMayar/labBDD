@@ -1,14 +1,13 @@
 package edu.iis.mto.bdd.trains.cucumber.steps;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
+import org.junit.Before;
 
 import cucumber.api.Transform;
-import cucumber.api.java.Before;
 import cucumber.api.java.pl.Gdy;
 import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
