@@ -9,22 +9,25 @@ import edu.iis.mto.bdd.trains.model.Line;
 
 public class IntineraryService {
 	
-	TimetableService timeTableService;
+	private TimetableService timeTableService;
 
 	public IntineraryService(TimetableService timeTableService) {
 		super();
 		this.timeTableService = timeTableService;
 	}
 	
-	public List<LocalTime> findNextDepartures(Line line, String departurePlace, LocalTime departureTime){
-		List<LocalTime> departures=new ArrayList<>();
-		
-		for (LocalTime time : timeTableService.findArrivalTimes(line, departurePlace)) {
-			if(time.isAfter(departureTime)) {
-				departures.add(time);
-			}
-		}
-		return departures;
-	}
+	public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime startTime) {
+        List<LocalTime> arrivalTimes = new ArrayList<>();
+        List<Line> lines = timeTableService.findLinesThrough(departure, destination);
+        for (Line line : lines) {
+            List<LocalTime> foundArrivalTimes = timeTableService.findArrivalTimes(line, departure);
+            for (LocalTime foundArrivalTime : foundArrivalTimes) {
+                if (foundArrivalTime.isAfter(startTime) && foundArrivalTime.isBefore(startTime.plusMinutes(30))) {
+                    arrivalTimes.add(foundArrivalTime);
+                }
+            }
+        }
+        return arrivalTimes;
+    }
 
 }
