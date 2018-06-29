@@ -47,7 +47,7 @@ public class CheckingArrivalTimesTest {
                 .thenReturn(new ArrayList<>(Arrays.asList(line)));
         Mockito.when(timetableService.findArrivalTimes(line, "Parramatta")).thenReturn(arrivalTimes);
         List<LocalTime> result = itineraryService.findNextDepartures("Parramatta", "Town Hall", new LocalTime(8, 0));
-        assertThat(result, hasSize(3));
+        assertThat(result, hasSize(4));
     }
 
 }
