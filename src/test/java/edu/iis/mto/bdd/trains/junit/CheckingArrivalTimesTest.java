@@ -34,6 +34,7 @@ public class CheckingArrivalTimesTest {
         arrivalTimes.add(new LocalTime(8, 2));
         arrivalTimes.add(new LocalTime(8, 11));
         arrivalTimes.add(new LocalTime(8, 14));
+        arrivalTimes.add(new LocalTime(8, 21));
         List<LocalTime> departureTimes = new ArrayList<>();
         departureTimes.add(new LocalTime(7, 58));
         departureTimes.add(new LocalTime(8, 0));
