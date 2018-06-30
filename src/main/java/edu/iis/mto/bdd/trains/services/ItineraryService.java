@@ -20,4 +20,14 @@ public class ItineraryService {
         }
         return timeOfDepartures;
     }
+    public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime startTime) {
+        List<LocalTime> timeOfDepartures = new LinkedList<>();
+        Line line = timetable.findLinesThrough(departure, destination).get(0);
+        for (LocalTime time : timetable.findArrivalTimes(line, departure)) {
+            if (time.isAfter(startTime) && time.isBefore(startTime.plusMinutes(15))) {
+                timeOfDepartures.add(time);
+            }
+        }
+        return timeOfDepartures;
+    }
 }
