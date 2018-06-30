@@ -35,6 +35,7 @@ public class WhenCalculatingArrivalTimes {
     public void ArriveExpectedTimesOnLineNamedWesternDeparturingFromParamattaToTownHall() {
         final int expectedNumberOfDepartures = 3;
         final int expectedNumberOfDeparturesLimitedByStartTime = 2;
+        final int expectedNumberOfDeparturesLimitedByStartTimeAndMaxPeriod = 1;
         line = Line.named("Western").departingFrom("Emu Plains").withStations("Parramatta", "Town Hall");
         Mockito.when(timetable.findLinesThrough("Parramatta", "Town Hall"))
                 .thenReturn(new LinkedList<>(Arrays.asList(line)));
@@ -45,5 +46,7 @@ public class WhenCalculatingArrivalTimes {
         Assert.assertThat(foundDepartureTimes, Matchers.equalTo(arrivalTimes));
         foundDepartureTimes = itinerary.findNextDepartures("Parramatta", "Town Hall", new LocalTime(8, 5));
         Assert.assertThat(foundDepartureTimes, Matchers.hasSize(expectedNumberOfDeparturesLimitedByStartTime));
+        foundDepartureTimes = itinerary.findNextDepartures("Parramatta", "Town Hall", new LocalTime(7, 55));
+        Assert.assertThat(foundDepartureTimes, Matchers.hasSize(expectedNumberOfDeparturesLimitedByStartTimeAndMaxPeriod));
     }
 }
