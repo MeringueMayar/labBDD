@@ -26,7 +26,7 @@ public class WhenCalculatingArrivalTimes {
     @Before
     public void setUp() {
         timetable = Mockito.mock(TimetableService.class);
-        itinerary = new ItineraryService(timetable);
+        itinerary = new ItineraryService(timetable, 15);
         arrivalTimes = new LinkedList<>(Arrays.asList(new LocalTime(8, 2), new LocalTime(8, 11), new LocalTime(8, 14)));
         departureTimes = new LinkedList<>(Arrays.asList(new LocalTime(7, 58), new LocalTime(8, 0), new LocalTime(8, 2), new LocalTime(8, 11), new LocalTime(8, 14), new LocalTime(8, 21)));
     }
