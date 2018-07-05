@@ -2,6 +2,7 @@ package edu.iis.mto.bdd.trains.cucumber.steps;
 
 import java.util.List;
 
+import edu.iis.mto.bdd.trains.services.InMemoryTimetableService;
 import edu.iis.mto.bdd.trains.services.ItineraryService;
 import org.joda.time.LocalTime;
 
@@ -17,13 +18,12 @@ import static org.junit.Assert.assertThat;
 
 public class OptimalItinerarySteps {
 
-    ItineraryService itineraryService;
+    private ItineraryService itineraryService = new BasicItineraryService(new InMemoryTimetableService());
 
     @Zakładając("^pociągi linii \"(.*)\" z \"(.*)\" odjeżdżają ze stacji \"(.*)\" do \"(.*)\" o$")
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
-        throw new PendingException();
-
+        itineraryService
     }
 
     @Gdy("^chcę podróżować z \"([^\"]*)\" do \"([^\"]*)\" o (.*)$")
