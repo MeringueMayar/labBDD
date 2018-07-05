@@ -23,12 +23,17 @@ import static org.junit.Assert.assertThat;
 
 public class OptimalItinerarySteps {
 
+    String departureStation;
+    String destinationStation;
     private ItineraryService itineraryService;
     @Zakładając("^pociągi linii \"(.*)\" z \"(.*)\" odjeżdżają ze stacji \"(.*)\" do \"(.*)\" o$")
     public void givenArrivingTrains(String line, String lineStart, String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) List<LocalTime> departureTimes) {
-        Line givenLine = new Line.LineBuilder(line).departingFrom(departure).withStations(destination);
-        InMemoryTimetableService inMemoryTimetableService = new InMemoryTimetableService(Arrays.asList(givenLine), departureTimes);
+        this.departureStation = departure;
+        this.destinationStation = destination;
+
+        Line givenLine = new Line.LineBuilder(line).departingFrom(departureStation).withStations(destinationStation);
+        InMemoryTimetableService inMemoryTimetableService = new InMemoryTimetableService();
         itineraryService = new BasicItineraryService(inMemoryTimetableService);
     }
 
@@ -40,6 +45,6 @@ public class OptimalItinerarySteps {
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")
     public void shouldBeInformedAbout(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
-        assertThat(itineraryService.findNextDepartures(), is(expectedTrainTimes));
+        assertThat(itineraryService.findNextDepartures(departureStation, destinationStation), is(expectedTrainTimes));
     }
 }
