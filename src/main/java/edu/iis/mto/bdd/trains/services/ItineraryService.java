@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ItineraryService {
     List<LocalTime> findNextDepartures();
+
+    void setDepartureTime(LocalTime departureTime);
 }
