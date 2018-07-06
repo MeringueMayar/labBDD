@@ -9,9 +9,7 @@ import org.joda.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Any;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +24,7 @@ public class WhenCalculatingDepartureTimesTest {
     private TimetableService timetableService;
 
     private Line testLine = new Line.LineBuilder("Test").departingFrom("Start").withStations("Start", "Through", "Destination");
+    private LocalTime testDepartureTime = new LocalTime(6,30);
 
     @Before
     public void setUp() {
@@ -36,8 +35,10 @@ public class WhenCalculatingDepartureTimesTest {
 
     @Test
     public void findNextDeparturesShouldReturnListOfLocalTimes() {
-        assertThat(itineraryService.findNextDepartures("Start", "Destination"), isA(List.class));
-        assertThat(itineraryService.findNextDepartures("Start", "Destination"), everyItem(isA(LocalTime.class)));
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", testDepartureTime),
+                isA(List.class));
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", testDepartureTime),
+                everyItem(isA(LocalTime.class)));
     }
 
     @Test
@@ -45,7 +46,18 @@ public class WhenCalculatingDepartureTimesTest {
         List<LocalTime> times = Arrays.asList(new LocalTime(6, 30), new LocalTime(7, 0),
                 new LocalTime(7, 10), new LocalTime(7, 20), new LocalTime(7, 30));
         Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
-        assertThat(itineraryService.findNextDepartures("Start", "Destination"), contains(times.toArray()));
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", times.get(0)),
+                contains(times.toArray()));
+    }
 
+
+    @Test
+    public void findNextDeparturesShouldReturnOnlyTimeValuesAfterDepartureTime() {
+        List<LocalTime> times = Arrays.asList(new LocalTime(6, 30), new LocalTime(7, 0),
+                new LocalTime(7, 10), new LocalTime(7, 20), new LocalTime(7, 30));
+        Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
+        
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", new LocalTime(6,50)),
+                not(hasItem(times.get(0))));
     }
 }
