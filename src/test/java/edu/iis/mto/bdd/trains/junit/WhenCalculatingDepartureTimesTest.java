@@ -24,7 +24,8 @@ public class WhenCalculatingDepartureTimesTest {
     private TimetableService timetableService;
 
     private Line testLine = new Line.LineBuilder("Test").departingFrom("Start").withStations("Start", "Through", "Destination");
-    private LocalTime testDepartureTime = new LocalTime(6,30);
+    List<LocalTime> times = Arrays.asList(new LocalTime(6, 30), new LocalTime(7, 0),
+            new LocalTime(7, 10), new LocalTime(7, 20), new LocalTime(7, 30));
 
     @Before
     public void setUp() {
@@ -35,16 +36,14 @@ public class WhenCalculatingDepartureTimesTest {
 
     @Test
     public void findNextDeparturesShouldReturnListOfLocalTimes() {
-        assertThat(itineraryService.findNextDepartures("Start", "Destination", testDepartureTime),
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", times.get(0)),
                 isA(List.class));
-        assertThat(itineraryService.findNextDepartures("Start", "Destination", testDepartureTime),
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", times.get(0)),
                 everyItem(isA(LocalTime.class)));
     }
 
     @Test
     public void findNextDeparturesShouldReturnCorrectTimeValues() {
-        List<LocalTime> times = Arrays.asList(new LocalTime(6, 30), new LocalTime(7, 0),
-                new LocalTime(7, 10), new LocalTime(7, 20), new LocalTime(7, 30));
         Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
         assertThat(itineraryService.findNextDepartures("Start", "Destination", times.get(0)),
                 contains(times.toArray()));
@@ -53,11 +52,18 @@ public class WhenCalculatingDepartureTimesTest {
 
     @Test
     public void findNextDeparturesShouldReturnOnlyTimeValuesAfterDepartureTime() {
-        List<LocalTime> times = Arrays.asList(new LocalTime(6, 30), new LocalTime(7, 0),
-                new LocalTime(7, 10), new LocalTime(7, 20), new LocalTime(7, 30));
         Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
-        
+
         assertThat(itineraryService.findNextDepartures("Start", "Destination", new LocalTime(6,50)),
                 not(hasItem(times.get(0))));
+    }
+
+    @Test
+    public void findNextDeparturesShouldNotReturnValuesAfterSpecificTimeFrame() {
+        Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
+        LocalTime departure = new LocalTime(6, 50);
+
+        assertThat(itineraryService.findNextDepartures("Start", "Destination", departure),
+                not(hasItem(greaterThan(departure.plusMinutes(15)))));
     }
 }
