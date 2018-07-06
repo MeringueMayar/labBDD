@@ -64,6 +64,6 @@ public class WhenCalculatingDepartureTimesTest {
         LocalTime departure = new LocalTime(6, 50);
 
         assertThat(itineraryService.findNextDepartures("Start", "Destination", departure),
-                not(hasItem(greaterThan(departure.plusMinutes(15)))));
+                not(hasItem(greaterThan(departure.plusMinutes(ItineraryService.MAX_MINUTES_AFTER_DEPARTURE)))));
     }
 }
