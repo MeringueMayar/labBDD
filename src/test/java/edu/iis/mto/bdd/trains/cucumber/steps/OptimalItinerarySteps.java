@@ -37,7 +37,6 @@ public class OptimalItinerarySteps {
     public void whenIWantToTravel(String departure, String destination,
             @Transform(JodaLocalTimeConverter.class) LocalTime startTime) {
         this.startTime = startTime;
-        itineraryService.setDepartureTime(startTime);
     }
 
     @Wtedy("^powinienem uzyskać informację o pociągach o:$")

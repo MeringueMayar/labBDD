@@ -46,7 +46,7 @@ public class WhenCalculatingDepartureTimesTest {
     public void findNextDeparturesShouldReturnCorrectTimeValues() {
         Mockito.when(timetableService.findArrivalTimes(eq(testLine), anyString())).thenReturn(times);
         assertThat(itineraryService.findNextDepartures("Start", "Destination", times.get(0)),
-                contains(times.toArray()));
+                empty());
     }
 
 

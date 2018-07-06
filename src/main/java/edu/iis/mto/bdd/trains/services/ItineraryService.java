@@ -5,7 +5,5 @@ import org.joda.time.LocalTime;
 import java.util.List;
 
 public interface ItineraryService {
-    List<LocalTime> findNextDepartures();
-
-    void setDepartureTime(LocalTime departureTime);
+    List<LocalTime> findNextDepartures(String departure, String destination, LocalTime localTime);
 }
