@@ -1,6 +1,8 @@
 package edu.iis.mto.bdd.trains.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -20,7 +22,8 @@ public class Line {
     private Line(String line, String departingFrom, List<String> stations) {
         this.line = line;
         this.departingFrom = departingFrom;
-        this.stations = stations;
+        this.stations = ImmutableList.copyOf(stations);
+//        this.stations.addAll(Collections.unmodifiableList(stations));
     }
 
     public String getDepartingFrom() {
@@ -32,7 +35,7 @@ public class Line {
     }
 
     public List<String> getStations() {
-        return ImmutableList.copyOf(stations);
+        return stations;
     }
 
     public Line withStations(String... stations) {
