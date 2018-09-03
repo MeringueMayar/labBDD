@@ -32,11 +32,7 @@ public class IntineraryService {
         List<LocalTime> timesAfter = new ArrayList<>();
 
         for(LocalTime arrival : arrivalTimes){
-            if(timesAfter.size() == 3) {
-                break;
-            }
-
-            if(arrival.isAfter(startTime)){
+            if(arrival.isAfter(startTime) && arrival.isBefore(startTime.plusMinutes(31))){
                 timesAfter.add(arrival);
             }
         }
