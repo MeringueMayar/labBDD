@@ -20,7 +20,7 @@ public class IntineraryService {
         List<LocalTime> arrivalTimes = new ArrayList<>();
 
         for(Line line : linesPossible){
-            arrivalTimes.addAll(timetableService.findArrivalTimes(line, destination));
+            arrivalTimes.addAll(timetableService.findArrivalTimes(line, departure));
         }
 
         List<LocalTime> foundedDepartures = findThreeClosestTimesAfter(arrivalTimes, startTime);
