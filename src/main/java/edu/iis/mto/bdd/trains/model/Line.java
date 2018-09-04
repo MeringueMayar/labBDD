@@ -20,7 +20,7 @@ public class Line {
     private Line(String line, String departingFrom, List<String> stations) {
         this.line = line;
         this.departingFrom = departingFrom;
-        this.stations = stations;
+        this.stations = ImmutableList.copyOf(stations);
     }
 
     public String getDepartingFrom() {
@@ -32,7 +32,7 @@ public class Line {
     }
 
     public List<String> getStations() {
-        return ImmutableList.copyOf(stations);
+        return stations;
     }
 
     public Line withStations(String... stations) {
