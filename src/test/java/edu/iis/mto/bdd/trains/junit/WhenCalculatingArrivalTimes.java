@@ -37,6 +37,7 @@ public class WhenCalculatingArrivalTimes {
         arrivalTime.add(new LocalTime(8, 2));
         arrivalTime.add(new LocalTime(8, 11));
         arrivalTime.add(new LocalTime(8, 14));
+        arrivalTime.add(new LocalTime(8, 21));
         List<LocalTime> departureTime= new ArrayList<>();
         departureTime.add(new LocalTime(7, 58));
         departureTime.add(new LocalTime(8, 0));
