@@ -20,7 +20,7 @@ public class IntineraryService {
         for (Line line : lines) {
             List<LocalTime> foundArrivalTimes = timetableService.findArrivalTimes(line, departure);
             for (LocalTime foundArrivalTime : foundArrivalTimes) {
-                if (foundArrivalTime.isAfter(startTime) && foundArrivalTime.isBefore(startTime.plusMinutes(15))) {
+                if (foundArrivalTime.isAfter(startTime) && foundArrivalTime.isBefore(startTime.plusMinutes(30))) {
                     arrivalTimes.add(foundArrivalTime);
                 }
             }
