@@ -1,20 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.iis.mto.bdd.trains.services;
 
-import java.util.List;
+import edu.iis.mto.bdd.trains.model.Line;
 import org.joda.time.LocalTime;
 
-/**
- *
- * @author karko
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItineraryService {
 
-    public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime startTime) {
-        return null;
+    private final TimetableService timetableService;
+
+    public ItineraryService(TimetableService timetableService) {
+        this.timetableService = timetableService;
     }
+
+    public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime startTime) {
+        List<Line> linesPossible = timetableService.findLinesThrough(departure, destination);
+
+        List<LocalTime> arrivalTimes = new ArrayList<>();
+        List<LocalTime> upcomingArrivalTimes = new ArrayList<>();
+
+        for (Line line : linesPossible) {
+            arrivalTimes.addAll(timetableService.findArrivalTimes(line, destination));
+            for (LocalTime arrival : arrivalTimes) {
+                if (upcomingArrivalTimes.size() == 3) {
+                    break;
+                }
+
+                if (arrival.isAfter(startTime)) {
+                    upcomingArrivalTimes.add(arrival);
+                }
+            }
+
+        }
+        return upcomingArrivalTimes;
+    }
+
 }

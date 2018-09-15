@@ -14,7 +14,7 @@ Scenariusz: Znajdź optymalną trasę pomiędzy stacjami na tej samej linii.
 		|	8:21	|
 	Jeżeli chcę podróżować z "Parramatta" do "Town Hall" o 8:00
 	Wtedy powinienem uzyskać informację o pociągach o: 
-		|	8:02	|
-		|	8:11	|
-		|	8:14	|
+		|	8:03	|
+		|	8:05	|
+		|	8:07	|
 	
