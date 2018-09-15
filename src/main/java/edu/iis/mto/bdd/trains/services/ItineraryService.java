@@ -14,7 +14,7 @@ import org.joda.time.LocalTime;
  */
 public class ItineraryService {
 
-    public List<LocalTime> findNextArrivals(String departure, String destination, LocalTime startTime) {
+    public List<LocalTime> findNextDepartures(String departure, String destination, LocalTime startTime) {
         return null;
     }
 }

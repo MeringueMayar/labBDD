@@ -8,16 +8,9 @@ import cucumber.api.java.pl.I;
 import cucumber.api.java.pl.Jeżeli;
 import cucumber.api.java.pl.Wtedy;
 import cucumber.api.java.pl.Zakładając;
-import edu.iis.mto.bdd.trains.services.ItineraryService;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 public class ETAStep {
-    private ItineraryService itineraryService;
-    String departure, destination;
-    LocalTime startTime;
-    
-    
+
     @Zakładając("^chcę się dostać z \"(.*)\" do \"(.*)\"$")
     public void wantToGetFrom(String departurePlace, String arrivalPlace) {
         throw new PendingException();
@@ -35,6 +28,6 @@ public class ETAStep {
 
     @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu:(.*)$")
     public void IShouldReceiveTheNextETA(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
-        assertThat(itineraryService.findNextArrivals(departure, destination, startTime), is(expectedTrainTimes));
+        throw new PendingException();
     }
 }
