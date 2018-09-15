@@ -23,11 +23,11 @@ public class ItineraryService {
         for (Line line : linesPossible) {
             arrivalTimes.addAll(timetableService.findArrivalTimes(line, destination));
             for (LocalTime arrival : arrivalTimes) {
-                if (upcomingArrivalTimes.size() == 3) {
+                if (upcomingArrivalTimes.size() == 4) {
                     break;
                 }
 
-                if (arrival.isAfter(startTime)) {
+                if (arrival.isAfter(startTime) && arrival.isBefore(startTime.plusMinutes(30))) {
                     upcomingArrivalTimes.add(arrival);
                 }
             }
