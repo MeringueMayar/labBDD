@@ -13,21 +13,21 @@ public class ETAStep {
 
     @Zakładając("^chcę się dostać z \"(.*)\" do \"(.*)\"$")
     public void wantToGetFrom(String departurePlace, String arrivalPlace) {
-        //throw new PendingException();
+        throw new PendingException();
     }
 
     @I("^następny pociąg odjeżdza o (.*) na linii \"(.*)\"$")
     public void andNextTheTrainArrivesAt(@Transform(JodaLocalTimeConverter.class) LocalTime startTime, String line) {
-        //throw new PendingException();
+        throw new PendingException();
     }
 
     @Jeżeli("^zapytam o godzinę przyjazdu$")
     public void whenIAskAboutTheTimeOfArrival() {
-        //throw new PendingException();
+        throw new PendingException();
     }
 
     @Wtedy("^powinienem uzyskać następujący szacowany czas przyjazdu:(.*)$")
     public void IShouldReceiveTheNextETA(@Transform(JodaLocalTimeConverter.class) List<LocalTime> expectedTrainTimes) {
-        //throw new PendingException();
+        throw new PendingException();
     }
 }
